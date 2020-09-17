@@ -1,18 +1,21 @@
 """
 Be sure you have minitorch installed in you Virtual Env.
->>> pip install -Ue .
+# >>> pip install -Ue .
 """
 import minitorch
 import matplotlib.pyplot as plt
 import random
 import datasets
 
+# PTS = 50
+# DATASET = datasets.Simple(PTS, vis=True)
+# HIDDEN = 2
+# RATE = 0.5
+
 PTS = 50
-DATASET = datasets.Simple(PTS, vis=True)
-HIDDEN = 2
+DATASET = datasets.Xor(PTS, vis=True)
+HIDDEN = 10
 RATE = 0.5
-
-
 class Network(minitorch.Module):
     def __init__(self):
         super().__init__()

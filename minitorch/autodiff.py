@@ -1,4 +1,5 @@
 import uuid
+# import pdb
 
 
 def wrap_tuple(x):
@@ -179,8 +180,18 @@ class FunctionBase:
             (see `is_constant` to remove unneeded variables)
 
         """
-        # TODO: Implement for Task 1.3.
-        raise NotImplementedError('Need to implement for Task 1.3')
+
+        my_list = []
+        backward_value = cls.backward(ctx, d_output)
+        # if (isinstance(v,int) == False)
+        # pdb.set_trace()
+        if isinstance(backward_value, tuple) is False:
+            backward_value = (backward_value,)
+        for i, v in enumerate(inputs):
+            if ((isinstance(v, int) is False) and (isinstance(v, float) is False)):
+                if v.history is not None:
+                    my_list.append(VariableWithDeriv(v, backward_value[i]))
+        return my_list
 
 
 def is_leaf(val):
@@ -202,5 +213,19 @@ def backpropagate(final_variable_with_deriv):
        final_variable_with_deriv (:class:`VariableWithDeriv`): The final variable
            and its derivative that we want to propagate backward to the leaves.
     """
-    # TODO: Implement for Task 1.4.
-    raise NotImplementedError('Need to implement for Task 1.4')
+
+    queue = []
+    queue.append(final_variable_with_deriv)
+
+    while len(queue) != 0:
+        Variable_derivative = queue.pop(0)
+        if Variable_derivative.variable.history.is_leaf():
+            Variable_derivative.variable._add_deriv(Variable_derivative.deriv)
+        else:
+            v_d = Variable_derivative.variable.history.last_fn.chain_rule(
+                Variable_derivative.variable.history.ctx,
+                Variable_derivative.variable.history.inputs,
+                Variable_derivative.deriv,
+            )
+            for v in v_d:
+                queue.append(v)

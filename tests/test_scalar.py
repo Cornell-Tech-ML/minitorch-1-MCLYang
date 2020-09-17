@@ -18,18 +18,22 @@ def test_central_diff():
 
 
 one_arg = [
-    ("neg", lambda a: -a),
-    ("addconstant", lambda a: a + 5),
-    ("subconstant", lambda a: a - 5),
-    ("mult", lambda a: 5 * a),
-    ("div", lambda a: a / 5),
-    ("sig", lambda a: a.sigmoid(), lambda a: minitorch.operators.sigmoid(a)),
+    ("neg", lambda a: -a),  # f0
+    ("addconstant", lambda a: a + 5),  # f1
+    ("subconstant", lambda a: a - 5),  # f2
+    ("mult", lambda a: 5 * a),  # f3
+    ("div", lambda a: a / 5),  # f4
+    ("sig", lambda a: a.sigmoid(), lambda a: minitorch.operators.sigmoid(a)),  # f5
     (
-        "log",
+        "log",  # f6
         lambda a: (a + 100000).log(),
         lambda a: minitorch.operators.log(a + 100000),
     ),
-    ("relu", lambda a: (a + 5.5).relu(), lambda a: minitorch.operators.relu(a + 5.5)),
+    (
+        "relu",
+        lambda a: (a + 5.5).relu(),
+        lambda a: minitorch.operators.relu(a + 5.5),
+    ),  # f7
 ]
 
 
