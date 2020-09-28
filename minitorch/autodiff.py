@@ -220,6 +220,7 @@ def backpropagate(final_variable_with_deriv):
     while len(queue) != 0:
         Variable_derivative = queue.pop(0)
         if Variable_derivative.variable.history.is_leaf():
+            # print(Variable_derivative.variable)
             Variable_derivative.variable._add_deriv(Variable_derivative.deriv)
         else:
             v_d = Variable_derivative.variable.history.last_fn.chain_rule(
