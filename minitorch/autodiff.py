@@ -1,4 +1,5 @@
 import uuid
+
 # import pdb
 
 
@@ -188,7 +189,7 @@ class FunctionBase:
         if isinstance(backward_value, tuple) is False:
             backward_value = (backward_value,)
         for i, v in enumerate(inputs):
-            if ((isinstance(v, int) is False) and (isinstance(v, float) is False)):
+            if (isinstance(v, int) is False) and (isinstance(v, float) is False):
                 if v.history is not None:
                     my_list.append(VariableWithDeriv(v, backward_value[i]))
         return my_list

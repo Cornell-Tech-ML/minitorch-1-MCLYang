@@ -9,7 +9,8 @@ import minitorch
 import matplotlib.pyplot as plt
 import random
 import datasets
-#from project.datasets import Simple, Split, Xor
+
+# from project.datasets import Simple, Split, Xor
 
 # PTS = 50
 # DATASET = datasets.Simple(PTS, vis=True)
@@ -23,6 +24,7 @@ RATE = 0.5
 
 
 # subprocess.run(['gnome-terminal', 'visdom'])
+
 
 class Network(minitorch.Module):
     def __init__(self):

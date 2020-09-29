@@ -1,6 +1,7 @@
 from .autodiff import FunctionBase, Variable, History
 from . import operators
 import numpy as np
+
 # import pdb
 
 ## Task 1.1
