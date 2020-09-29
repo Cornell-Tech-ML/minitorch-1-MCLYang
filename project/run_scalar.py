@@ -1,16 +1,29 @@
 """
 Be sure you have minitorch installed in you Virtual Env.
->>> pip install -Ue .
+# >>> pip install -Ue .
 """
+# import subprocess
+# subprocess.run('visdom', shell=True)
+
 import minitorch
 import matplotlib.pyplot as plt
 import random
 import datasets
 
+# from project.datasets import Simple, Split, Xor
+
+# PTS = 50
+# DATASET = datasets.Simple(PTS, vis=True)
+# HIDDEN = 2
+# RATE = 0.5
+
 PTS = 50
 DATASET = datasets.Simple(PTS, vis=True)
-HIDDEN = 2
+HIDDEN = 10
 RATE = 0.5
+
+
+# subprocess.run(['gnome-terminal', 'visdom'])
 
 
 class Network(minitorch.Module):

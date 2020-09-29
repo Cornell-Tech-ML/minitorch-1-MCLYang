@@ -6,37 +6,62 @@ import math
 
 def mul(x, y):
     ":math:`f(x, y) = x * y`"
-    raise NotImplementedError('Need to include this file from past assignment.')
+    # TODO: Implement for Task 0.1.
+    return x * y
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def id(x):
     ":math:`f(x) = x`"
-    raise NotImplementedError('Need to include this file from past assignment.')
+    # TODO: Implement for Task 0.1.
+    return x
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def add(x, y):
     ":math:`f(x, y) = x + y`"
-    raise NotImplementedError('Need to include this file from past assignment.')
+    # TODO: Implement for Task 0.1.
+    return x + y
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def neg(x):
     ":math:`f(x) = -x`"
-    raise NotImplementedError('Need to include this file from past assignment.')
+    return -x
+    # TODO: Implement for Task 0.1.
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def lt(x, y):
     ":math:`f(x) =` 1.0 if x is less than y else 0.0"
-    raise NotImplementedError('Need to include this file from past assignment.')
+    if x < y:
+        return 1
+    else:
+        return 0
+
+    # TODO: Implement for Task 0.1.
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def eq(x, y):
     ":math:`f(x) =` 1.0 if x is equal to y else 0.0"
-    raise NotImplementedError('Need to include this file from past assignment.')
+    if x == y:
+        return 1.0
+    else:
+        return 0.0
+
+    # TODO: Implement for Task 0.1.
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def max(x, y):
     ":math:`f(x) =` x if x is greater than y else y"
-    raise NotImplementedError('Need to include this file from past assignment.')
+    # TODO: Implement for Task 0.1.
+    if x > y:
+        return x
+    else:
+        return y
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def sigmoid(x):
@@ -52,7 +77,13 @@ def sigmoid(x):
     for stability.
 
     """
-    raise NotImplementedError('Need to include this file from past assignment.')
+    # TODO: Implement for Task 0.1.
+    if x >= 0:
+        return 1.0 / (1.0 + math.exp(-x))
+    else:
+        return math.exp(x) / (1.0 + math.exp(x))
+
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def relu(x):
@@ -61,12 +92,22 @@ def relu(x):
 
     (See `<https://en.wikipedia.org/wiki/Rectifier_(neural_networks)>`_ .)
     """
-    raise NotImplementedError('Need to include this file from past assignment.')
+    # TODO: Implement for Task 0.1.
+    if x > 0:
+        return x
+    else:
+        return 0.0
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def relu_back(x, y):
     ":math:`f(x) =` y if x is greater than 0 else 0"
-    raise NotImplementedError('Need to include this file from past assignment.')
+    # TODO: Implement for Task 0.1.
+    if x > 0:
+        return y
+    else:
+        return 0
+    # raise NotImplementedError("Need to implement for Task 0.1")
 
 
 EPS = 1e-6
@@ -109,13 +150,23 @@ def map(fn):
     See `<https://en.wikipedia.org/wiki/Map_(higher-order_function)>`_
 
     Args:
-        fn (one-arg function): Function from one value to one value.
+        fn (one-arg function): process one value
 
     Returns:
-        function : A function that takes a list, applies `fn` to each element, and returns a
-        new list
+        function : a function that takes a list and applies `fn` to each element
     """
-    raise NotImplementedError('Need to include this file from past assignment.')
+
+    def apply(my_list):
+        new_list = []
+        for counter, value in enumerate(my_list):
+            new_list.append(fn(value))
+        return new_list
+
+    return apply
+
+    # TODO: Implement for Task 0.3.
+
+    # raise NotImplementedError("Need to implement for Task 0.3")
 
 
 def negList(ls):
@@ -139,7 +190,16 @@ def zipWith(fn):
         applying fn(x, y) one each pair of elements.
 
     """
-    raise NotImplementedError('Need to include this file from past assignment.')
+    # TODO: Implement for Task 0.3.
+    def apply(my_list1, my_list2):
+        new_list = []
+        for counter, value in enumerate(my_list1):
+            new_list.append(fn(my_list1[counter], my_list2[counter]))
+        return new_list
+
+    return apply
+
+    # raise NotImplementedError("Need to implement for Task 0.3")
 
 
 def addLists(ls1, ls2):
@@ -150,32 +210,54 @@ def addLists(ls1, ls2):
 def reduce(fn, start):
     r"""
     Higher-order reduce.
-
     .. image:: figs/Ops/reducelist.png
-
-
     Args:
         fn (two-arg function): combine two values
         start (float): start value :math:`x_0`
-
     Returns:
         function : function that takes a list `ls` of elements
         :math:`x_1 \ldots x_n` and computes the reduction :math:`fn(x_3, fn(x_2,
         fn(x_1, x_0)))`
-
     """
-    raise NotImplementedError('Need to include this file from past assignment.')
+    # TODO: Implement for Task 0.3.
+
+    def apply(input_list):
+        my_list = input_list.copy()
+        if len(my_list) == 0:
+            return start
+        current_value = my_list.pop()
+        return fn(current_value, apply(my_list))
+
+        # if(len(my_list) == 0):
+        #     return(start)
+        # else:
+        #     while(len(my_list) != 0):
+
+    return apply
+
+    # raise NotImplementedError("Need to implement for Task 0.3")
 
 
 def sum(ls):
     """
     Sum up a list using :func:`reduce` and :func:`add`.
     """
-    raise NotImplementedError('Need to include this file from past assignment.')
+    my_fn = reduce(add, 0)
+    # print(my_fn(ls))
+    # print(sum(ls))
+    return my_fn(ls)
+
+    # TODO: Implement for Task 0.3.
+
+    # raise NotImplementedError("Need to implement for Task 0.3")
 
 
 def prod(ls):
     """
     Product of a list using :func:`reduce` and :func:`mul`.
     """
-    raise NotImplementedError('Need to include this file from past assignment.')
+    my_fn = reduce(mul, 1)
+    return my_fn(ls)
+
+    # TODO: Implement for Task 0.3.
+    # raise NotImplementedError("Need to implement for Task 0.3")
